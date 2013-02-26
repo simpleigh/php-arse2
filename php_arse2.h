@@ -17,7 +17,6 @@ extern zend_module_entry arse2_module_entry;
 #endif
 
 PHP_MINIT_FUNCTION(arse2);
-PHP_METHOD(arse2, __construct);
 PHP_METHOD(arse2, output);
 
 #endif	/* PHP_ARSE2_H */

@@ -12,8 +12,7 @@ zend_class_entry *php_arse2_sc_entry;
 
 /* {{{ php_arse_class_methods */
 static zend_function_entry php_arse_class_methods[] = {
-	PHP_ME(arse2, __construct, NULL, ZEND_ACC_PUBLIC)
-	PHP_ME(arse2, output,      NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(arse2, output, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
 /* }}} */
@@ -49,16 +48,6 @@ PHP_MINIT_FUNCTION(arse2)
 #ifdef COMPILE_DL_ARSE2
 ZEND_GET_MODULE(arse2)
 #endif
-
-/* {{{ proto  int Arse::__construct()
-   __constructor for Arse. */
-PHP_METHOD(arse2, __construct)
-{
-	if (zend_parse_parameters_none() == FAILURE) {
-		php_error(E_WARNING, "__construct: invalid parameters");
-	}
-}
-/* }}} */
 
 /* {{{ proto  Arse::output([int])
  */
