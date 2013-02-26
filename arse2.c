@@ -1,4 +1,3 @@
-
 #ifdef HAVE_CONFIG_H
 #include "config.h"
 #endif
@@ -8,11 +7,16 @@
 #include "ext/standard/info.h"
 #include "php_arse2.h"
 
-/* True global resources - no need for thread safety here */
-static int le_arse2;
-
 /* Class entries */
 zend_class_entry *php_arse2_sc_entry;
+
+/* {{{ php_arse_class_methods */
+static zend_function_entry php_arse_class_methods[] = {
+	PHP_ME(arse2, __construct, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(arse2, output,      NULL, ZEND_ACC_PUBLIC)
+	PHP_FE_END
+};
+/* }}} */
 
 /* {{{ arse2_module_entry
  */
@@ -25,17 +29,11 @@ zend_module_entry arse2_module_entry = {
 	NULL,
 	NULL,
 	NULL,
-	PHP_ARSE2_VERSION,
+	"0.1",
 	STANDARD_MODULE_PROPERTIES
 };
 /* }}} */
 
-/* {{{ php_arse_class_methods */
-static zend_function_entry php_arse_class_methods[] = {
-	PHP_ME(arse2, __construct, NULL, ZEND_ACC_PUBLIC)
-	PHP_FE_END
-};
-/* }}} */
 
 /* {{{ PHP_MINIT_FUNCTION
  */
@@ -44,7 +42,6 @@ PHP_MINIT_FUNCTION(arse2)
 	zend_class_entry ce;
 	INIT_CLASS_ENTRY(ce, "Arse", php_arse_class_methods);
 	php_arse2_sc_entry = zend_register_internal_class(&ce TSRMLS_CC);
-
 	return SUCCESS;
 }
 /* }}} */
@@ -58,9 +55,28 @@ ZEND_GET_MODULE(arse2)
 PHP_METHOD(arse2, __construct)
 {
 	if (zend_parse_parameters_none() == FAILURE) {
+		php_error(E_WARNING, "__construct: invalid parameters");
+	}
+}
+/* }}} */
+
+/* {{{ proto  Arse::output([int])
+ */
+PHP_METHOD(arse2, output)
+{
+	long l = 1;
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "|l", &l) == FAILURE) {
 		return;
 	}
-	php_error(E_WARNING, "__construct: not yet implemented");
+
+	if (l < 1) {
+		php_error(E_ERROR, "Invalid number of arses");
+	}
+
+	for (; l>0; l--)
+		php_printf("You're an arse!\n");
+
+	return;
 }
 /* }}} */
 
