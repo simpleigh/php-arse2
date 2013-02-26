@@ -2,6 +2,8 @@
 #ifndef PHP_ARSE2_H
 #define PHP_ARSE2_H
 
+#define PHP_ARSE2_VERSION  "0.1"
+
 extern zend_module_entry arse2_module_entry;
 #define phpext_arse2_ptr &arse2_module_entry
 
@@ -18,23 +20,7 @@ extern zend_module_entry arse2_module_entry;
 #endif
 
 PHP_MINIT_FUNCTION(arse2);
-PHP_MSHUTDOWN_FUNCTION(arse2);
-PHP_RINIT_FUNCTION(arse2);
-PHP_RSHUTDOWN_FUNCTION(arse2);
-PHP_MINFO_FUNCTION(arse2);
-
-PHP_FUNCTION(confirm_arse2_compiled);	/* For testing, remove later. */
-PHP_FUNCTION(__construct);
-
-/* 
-  	Declare any global variables you may need between the BEGIN
-	and END macros here:     
-
-ZEND_BEGIN_MODULE_GLOBALS(arse2)
-	long  global_value;
-	char *global_string;
-ZEND_END_MODULE_GLOBALS(arse2)
-*/
+PHP_METHOD(arse2, __construct);
 
 /* In every utility function you add that needs to use variables 
    in php_arse2_globals, call TSRMLS_FETCH(); after declaring other 
