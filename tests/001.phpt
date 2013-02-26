@@ -1,5 +1,5 @@
 --TEST--
-Check for arse2 presence
+Check for arse presence
 --SKIPIF--
 <?php if (!extension_loaded("arse2")) print "skip"; ?>
 --FILE--
