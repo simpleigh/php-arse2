@@ -60,7 +60,7 @@ PHP_METHOD(arse2, output)
 	}
 
 	if (l < 1) {
-		php_error(E_ERROR, "Invalid number of arses");
+		php_error_docref(NULL TSRMLS_CC, E_ERROR, "Invalid number of arses");
 	}
 
 	for (; l>0; l--) {
