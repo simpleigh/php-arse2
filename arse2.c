@@ -5,18 +5,18 @@
 #include "php.h"
 #include "php_arse2.h"
 
-/* Class entries */
+/* {{{ class entries */
 zend_class_entry *php_arse2_sc_entry;
+/* }}} */
 
-/* {{{ php_arse_class_methods */
+/* {{{ php_arse_class_methods[] */
 static zend_function_entry php_arse_class_methods[] = {
 	PHP_ME(arse2, output, NULL, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
 /* }}} */
 
-/* {{{ arse2_module_entry
- */
+/* {{{ arse2_module_entry */
 zend_module_entry arse2_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"arse2",
@@ -31,9 +31,7 @@ zend_module_entry arse2_module_entry = {
 };
 /* }}} */
 
-
-/* {{{ PHP_MINIT_FUNCTION
- */
+/* {{{ PHP_MINIT_FUNCTION */
 PHP_MINIT_FUNCTION(arse2)
 {
 	zend_class_entry ce;
@@ -47,8 +45,7 @@ PHP_MINIT_FUNCTION(arse2)
 ZEND_GET_MODULE(arse2)
 #endif
 
-/* {{{ proto  Arse::output([int])
- */
+/* {{{ proto  Arse::output([int]) */
 PHP_METHOD(arse2, output)
 {
 	long l = 1;
@@ -60,8 +57,9 @@ PHP_METHOD(arse2, output)
 		php_error(E_ERROR, "Invalid number of arses");
 	}
 
-	for (; l>0; l--)
+	for (; l>0; l--) {
 		php_printf("You're an arse!\n");
+	}
 
 	return;
 }
