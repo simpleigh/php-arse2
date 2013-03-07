@@ -9,9 +9,15 @@
 zend_class_entry *php_arse2_sc_entry;
 /* }}} */
 
+/* {{{ arginfo_arse */
+ZEND_BEGIN_ARG_INFO(arginfo_arse, 0)
+ZEND_ARG_INFO(0, count)
+ZEND_END_ARG_INFO()
+/* }}} */
+
 /* {{{ php_arse_class_methods[] */
 static zend_function_entry php_arse_class_methods[] = {
-	PHP_ME(arse2, output, NULL, ZEND_ACC_PUBLIC)
+	PHP_ME(arse2, output, arginfo_arse, ZEND_ACC_PUBLIC)
 	PHP_FE_END
 };
 /* }}} */
